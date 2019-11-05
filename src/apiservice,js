@@ -1,0 +1,39 @@
+import axios from 'axios';
+
+const API_URL     = 'http://taskmanager.local';
+const API_VERSION = 'v1';
+
+export class APIService {
+
+    constructor(){
+    }
+
+    getTasks()
+    {
+        const url = `${API_URL}/api/${API_VERSION}/tasks/`;
+        return axios.get(url).then(response => response.data);
+    }
+
+    getTask(id)
+    {
+        const url = `${API_URL}/api/${API_VERSION}/tasks/${id}`;
+        return axios.get(url).then(response => response.data);
+    }
+
+    sendNewTask(task)
+    {
+        const url = `${API_URL}/api/${API_VERSION}/tasks/create`;
+        return axios.post(url, task);
+    }
+
+    deleteTask(id){
+        const url = `${API_URL}/api/${API_VERSION}/tasks/${id}`;
+        return axios.delete(url);
+    }
+
+    updateTask(id, task){
+        const url = `${API_URL}/api/${API_VERSION}/tasks/${task.id}`;
+        alert(url);
+        return axios.put(url, task);
+    }
+}
